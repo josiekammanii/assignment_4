@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Playlists</title>
+</head>
+<body>
+    <h1>All Playlists</h1>
+    <ul>
+        {% for playlist in playlists %}
+        <li>{{ playlist }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Go Back</a>
+</body>
+</html>

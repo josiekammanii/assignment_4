@@ -3,13 +3,22 @@
 <head>
     <title>View Artists</title>
 </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
 <body>
     <h1>All Artists</h1>
-    <ul>
-        {% for artist in artists %}
-        <li>{{ artist }}</li>
+    <table border="1">
+        <tr>
+            <th>Artist Name</th>
+        </tr>
+        {% for artist in songs %}
+        <tr>
+            <td><a href="/view_artists/<artist_name>">{{ artist.name }}</a></td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
+    <br>
     <a href="/">Go Back</a>
 </body>
 </html>

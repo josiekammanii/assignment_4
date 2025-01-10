@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Songs</title>
 </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
 <body>
     <h1>Upload New Song</h1>
     <form action="/upload_song" method="post" enctype="multipart/form-data">
@@ -12,6 +15,6 @@
         <input type="file" name="song" id="song" required>
         <button type="submit">Upload</button>
     </form>
-    <a href="/">Back to Home</a>
+    <g href="/">Back to Home</a>
 </body>
 </html>

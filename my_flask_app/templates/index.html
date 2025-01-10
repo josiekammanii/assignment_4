@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Collection Manager</title>
 </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
 <body>
     <h1>Welcome to your Music Collection Manager</h1>
     <a href="/view_songs">View Songs</a>
-    <a href="/view_albums">View Songs</a>
+    <a href="/view_albums">View Albums</a>
+    <a href="/view_artists">View Artists</a>
+    <a href="/view_playlists">View Playlists</a>
     <a href="/upload">Upload Songs</a>
+    <a href="/your_statistics">Your Collection Statistics</a>
+    
 </body>
 </html>

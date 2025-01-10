@@ -1,8 +1,38 @@
 <!DOCTYPE html>
+<html lang="en"></html>
 <html>
 <head>
     <title>View Songs</title>
 </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</body>
+<body>
+    <h1>Filter By Genre</h1>
+    <form action="/filter_genre" method="POST">
+        <label for="genre">Choose a Genre:</label>
+        <div class="genre-filter">
+            <a href="/view_songs/filter_genre?genre=rock"class="select-genre">Rock</a>   
+            <a href="/view_songs/filter_genre?genre=pop"class="select-genre">Pop</a>
+            <a href="/view_songs/filter_genre?genre=reggae"class="select-genre">Reggae</a>
+            <a href="/view_songs/filter_genre?genre=afrobeats"class="select-genre">Afrobeats</a>
+            <a href="/view_songs/filter_genre?genre=latin"class="select-genre">Latin</a>
+            <a href="/view_songs/filter_genre?genre=country"class="select-genre">Country</a>
+            <a href="/view_songs/filter_genre?genre=r&b"class="select-genre">R&B</a>
+            <a href="/view_songs/filter_genre?genre=hip Hop"class="select-genre">Hip Hop</a>
+        </div>
+    </form>
+</body>
+</html>
+
+
+</html>
+
+
 <body>
     <h1>All Songs</h1>
     <table border="1">
@@ -11,6 +41,7 @@
             <th>Artist</th>
             <th>Album</th>
             <th>Duration</th>
+            <th>Album Year</th>
             <th>Genre</th>
         </tr>
         {% for song in songs %}
@@ -19,11 +50,14 @@
             <td>{{ song.artist }}</td>
             <td>{{ song.album }}</td>
             <td>{{ song.duration }}</td>
+            <td>{{ song.year }}</td>
             <td>{{ song.genre }}</td>
         </tr>
         {% endfor %}
     </table>
+    <br>
     <a href="/">Go Back</a>
 </body>
 </html>
+
 

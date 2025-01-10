@@ -1,12 +1,19 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: URW Chancery L, cursive;
+    font-weight: 900;
     margin: 0;
     padding: 0;
+    background-image: url('../notes.jpg');
+    background-size: cover;
+    background-position: center;
+    background-size: 100% 300%;
+    color: #fdfcfc;
 }
 
 h1 {
-    color: #333;
+    color: #fdfcfc;
     text-align: center;
+    text-decoration: underline;
 }
 
 a {
@@ -14,9 +21,23 @@ a {
     text-align: center;
     margin: 10px;
     text-decoration: none;
-    color: blue;
+    color: rgb(229, 235, 238);
+    font-size: 25px;
 }
 
 a:hover {
-    color: darkblue;
+    color: rgb(243, 247, 248);
+}
+
+.select-genre {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(243, 243, 246);
+    text-decoration: underline;
+    text-align: left;
+    margin-bottom: 10px;
+    display: inline;
+}
+.select-genre:hover {
+    color: rgb(243, 247, 248);
 }

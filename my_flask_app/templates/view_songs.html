@@ -14,8 +14,8 @@
 <body>
     <h1>Filter By Genre</h1>
     <form action="/filter_genre" method="POST">
-        <label for="genre">Choose a Genre:</label>
-        <div class="genre-filter">
+        <label for="genre">Filter by Genre:</label>
+        <div>
             <a href="/view_songs/filter_genre?genre=rock"class="select-genre">Rock</a>   
             <a href="/view_songs/filter_genre?genre=pop"class="select-genre">Pop</a>
             <a href="/view_songs/filter_genre?genre=reggae"class="select-genre">Reggae</a>
@@ -27,8 +27,27 @@
         </div>
     </form>
 </body>
-</html>
 
+
+</html>
+ <label>Add Song to Playlist:</label>
+    <form action="/add_song" method="POST">
+        <label for="song">Choose a Song:</label>
+        <select name="song" id="song">
+            {% for song in songs %}
+            <option value="{{ song.title }}">{{ song.title }}</option>
+            {% endfor %}
+        </select>
+        <label for="playlist">Choose a Playlist:</label>
+        <select name="playlist" id="playlist">
+            {% for playlist in playlists %}
+            <option value="{{playlist.name }}">{{ playlist.name }}</option>
+            {% endfor %}
+        </select>
+        <div>
+            <a href="/view_songs" class="select-genre">Add Song to Playlist</a> 
+        </div>
+    </form>
 
 </html>
 

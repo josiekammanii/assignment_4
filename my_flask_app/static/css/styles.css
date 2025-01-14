@@ -6,7 +6,6 @@ body {
     background-image: url('../notes.jpg');
     background-size: cover;
     background-position: center;
-    background-size: 100% 300%;
     color: #fdfcfc;
 }
 
@@ -26,7 +25,7 @@ a {
 }
 
 a:hover {
-    color: rgb(243, 247, 248);
+    color: rgb(214, 8, 98);
 }
 
 .select-genre {
@@ -39,5 +38,54 @@ a:hover {
     display: inline;
 }
 .select-genre:hover {
-    color: rgb(243, 247, 248);
+    color: rgb(214, 8, 98);
 }
+
+.button {
+    background-color: rgb(121, 5, 56);
+    color: #fdfcfc;
+    font-size: 24px;
+    font-weight: 900;
+    padding: 12px 12px;
+    width: 250px;
+    margin: 10px;
+    float: center;
+    border: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    background-position: center;
+    transition: all 0.5s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
+    display: block;
+}
+
+.button:hover {
+    color: rgb(214, 8, 98);
+    display: block;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button span {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }

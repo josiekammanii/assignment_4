@@ -4,11 +4,16 @@ import os
 import pandas as pd
 import csv
 from global_vars import CSV_SONGS_PATH,ALBUM_PATH,ARTIST_PATH
-
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 # Initialize Flask App
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './uploads'
 
+IMAGE_FOLDER = "static/images"
+if not os.path.exists(IMAGE_FOLDER):
+    os.makedirs(IMAGE_FOLDER)
 
 # Create an instance of MusicManager
 manager = MusicManager()
@@ -30,12 +35,6 @@ def filter_songs_by_genre():
         songs = [song for song in manager.songs if song.genre.lower() == genre]
         print(songs)
     return render_template('view_songs.html', songs=songs)
-
-
-def filter_songs_by_year(year):
-    songs = pd.read_csv(CSV_SONGS_PATH)
-    filtered_songs = songs[songs["Year"] == year]
-    return filtered_songs
 
 @app.route('/view_albums')
 def view_albums():
@@ -80,7 +79,10 @@ def delete_playlist(playlist_name):
     else:
         return f"Playlist {playlist_name} not found."
 
-
+@app.route('/view_playlists/<playlist_name>')
+def view_playlist(playlist_name):
+    albums = pd.read_csv(ALBUM_PATH)
+    return render_template('album_page.html', albums=albums, album_name=album_name)
 
 @app.route('/upload')
 def upload():
@@ -89,34 +91,50 @@ def upload():
 @app.route('/add_song', methods=['GET', 'POST'])
 def add_song():
     if request.method == 'POST':
-        title = request.form['Name']
-        artist_name = request.form['Artist']
-        album_name = request.form['Album']
-        duration = request.form['Duration']
+        title = request.form.get('title')
+        playlist = request.form.get('playlist')
 
-
-        # Check if artist exists
-        _artist = next((artist for artist in manager.artists if artist.name == artist_name), None)
-        if not _artist:
-            new_artist = Artist(artist_name)
-            manager.artists.append(new_artist)
-
-        # Check if album exists
-        _album = next((album for album in manager.album if album.name == album_name), None)
-        if not _album:
-            new_album = Album(album_name)
-            manager.albums.append(new_album)
-            manager.artists.append(new_album)
-
-        # Create the song
-        song = AudioTrack(title, artist_name, duration, album_name)
-        manager.songs.append(song)
-        this_artist = next((artist for artist in manager.artists if artist.name == artist_name))
-        this_artist.add_song(song)
-        this_album = next((album for album in manager.albums if album.name == album_name))
-        this_album.add_song(song)
-
-        return redirect(url_for('home'))
+        if playlist in manager.playlists:
+            song = next((song for song in manager.songs if song.title == title), None)
+            if song:
+                manager.playlists[playlist].append(song)
+                print(f"Song '{song}' added to playlist '{playlist}'.")
+                return render_template('view_songs.html', songs=manager.songs)
+            else:
+                print(f"Song '{song}' not found.")
+    
+@app.route('/collection_statistics')
+def statistics():
+    music_stats = pd.read_csv(CSV_SONGS_PATH)
+    
+    # Generate and save Pie Chart
+    plt.figure(figsize=(8, 5.5))
+    pie_chart = music_stats['Genre'].value_counts().plot.pie(autopct='%1.1f%%',pctdistance = 0.9,labeldistance = 1.05,radius=1.5)
+    pie_chart_path = os.path.join(IMAGE_FOLDER, "pie_chart.png")
+    plt.savefig(pie_chart_path)
+    plt.close()
+    
+    # Generate and save Bar Chart
+    plt.figure(figsize=(12, 14)) 
+    bar_chart = music_stats['Artist'].value_counts().plot.bar()
+    plt.title("Artist Distribution")
+    plt.xticks(fontsize=7)
+    bar_chart_path = os.path.join(IMAGE_FOLDER, "bar_chart.png")
+    plt.savefig(bar_chart_path)
+    plt.close()
+    
+    # Generate and save Line Chart
+    line_chart = music_stats['Year'].value_counts().sort_index().plot.line()
+    plt.title("Songs in a Year")
+    line_chart_path = os.path.join(IMAGE_FOLDER, "line_chart.png")
+    plt.savefig(line_chart_path)
+    plt.close()
+    
+    # Pass image paths to the template
+    return render_template('statistics.html', 
+                           pie_chart_url=pie_chart_path, 
+                           bar_chart_url=bar_chart_path, 
+                           line_chart_url=line_chart_path)
 
 
 

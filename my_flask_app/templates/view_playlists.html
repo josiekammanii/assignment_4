@@ -10,7 +10,7 @@
     <h1>All Playlists</h1>
     <ul>
         {% for playlist in playlists %}
-        <a href="/view_playlist/{{ playlist }}">{{ playlist }}</a> - 
+        <a href="/view_playlist/<playlist_name>">{{ playlist }}</a> - 
         <a href="/view_songs">Add Song</a>
     </li>
     {% endfor %}

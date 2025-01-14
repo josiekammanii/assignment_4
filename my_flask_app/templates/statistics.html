@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Music Collection Stats</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h2>Genre Distribution (Pie Chart)</h2>
+    <img src="{{ pie_chart_url }}" alt="Pie Chart of Genre Distribution">
+    
+    <h2>Artist Distribution (Bar Chart)</h2>
+    <img src="{{ bar_chart_url }}" alt="Bar Chart of Artist Distribution">
+    
+    <h2>Songs per Year (Line Chart)</h2>
+    <img src="{{ line_chart_url }}" alt="Line Chart of Songs per Year">
+</body>
+</html>
+<a href="/">Back to Home</a>

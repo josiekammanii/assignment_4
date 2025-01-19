@@ -153,6 +153,7 @@ def delete_playlist(playlist_name):
 
 @app.route('/view_playlists/<playlist_name>')
 def view_playlist(playlist_name):
+    songs = manager.playlists.get(playlist_name, [])
     return render_template('songs_in_playlist.html', playlist_name=playlist_name, songs=manager.playlists[playlist_name])
 
 @app.route('/upload')
@@ -185,13 +186,14 @@ def statistics():
     plt.savefig(pie_chart_path)
     plt.close()
     
-    # # Generate and save Bar Chart
-    # genre_stats = music_stats['Genre'].value_counts()
-    # mkfig = px.pie(names=genre_stats.index, values=genre_stats.values, title="Songs by Genre")
-    # plt.xticks(fontsize=7)
-    # bar_chart_path = os.path.join(IMAGE_FOLDER, "bar_chart.svg")
-    # plt.savefig(bar_chart_path)
-    # plt.close()
+    # Generate and save Bar Chart
+    plt.figure(figsize=(8, 13))
+    genre_stats = music_stats['Artist'].value_counts()
+    bar_chart = genre_stats.plot.bar()
+    bar_chart.set_xticklabels(bar_chart.get_xticklabels(), fontsize=7)
+    bar_chart_path = os.path.join(IMAGE_FOLDER, "bar_chart.svg")
+    plt.savefig(bar_chart_path)
+    plt.close()
     
     # Generate and save Line Chart
     line_chart = music_stats['Year'].value_counts().sort_index().plot.line()

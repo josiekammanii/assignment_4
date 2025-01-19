@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # ----- Classes -----
 
-class Track_Properties():
+class AudioTrack():
     def __init__(self, title, artist,album, duration,year,genre):
         self.title = title
         self.artist = artist
@@ -18,9 +18,8 @@ class Track_Properties():
         self.genre = genre
         self.date_uploaded = datetime.now()
 
-class MusicManager(Track_Properties):
-    def __init__(self,title, artist,album, duration,year,genre):
-        super().__init__(self, title, artist,album, duration,year,genre)
+class MusicManager():
+    def __init__(self):
         self.songs = []
         self.artists = []
         self.albums = []
@@ -34,25 +33,25 @@ class MusicManager(Track_Properties):
         data = pd.read_csv(file_path)  # Load CSV file
         for _, row in data.iterrows():
             artist = Artist(row["Artist"])
-            song = Track_Properties(row["Name"], row["Artist"],row["Album"], row["Duration"], row["Year"], row["Genre"])
+            song = AudioTrack(row["Name"], row["Artist"],row["Album"], row["Duration"], row["Year"], row["Genre"])
             album = Album(row["Album"])
             self.songs.append(song)  # Add song as a dictionary to the list
             self.artists.append(artist)
             self.albums.append(album)
 
 
-class Album(Track_Properties):
-    def __init__(self,title, artist,album, duration,year,genre):
-        super().__init__(self, title, artist,album, duration,year,genre)
+class Album():
+    def __init__(self,name):
+        self.name = name
         self.date_uploaded = datetime.now()
         self.songs = []
 
     def add_song(self, song):
         self.songs.append(song)
 
-class Artist(Track_Properties):
-    def __init__(self, title, artist,album, duration,year,genre):
-        super().__init__(self, title, artist,album, duration,year,genre)
+class Artist():
+    def __init__(self, name):
+        self.name = name
         self.albums = []
         self.songs = []
 

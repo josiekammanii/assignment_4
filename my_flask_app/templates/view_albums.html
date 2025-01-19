@@ -3,9 +3,9 @@
 <head>
     <title>View Albums</title>
 </head>
-<body>
+<head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
-</body>
+</head>
 <body>
     <h1>All Albums</h1>
     <table border="1">
@@ -14,7 +14,7 @@
         </tr>
         {% for album in songs %}
         <tr>
-            <td><a href="/view_albums/<album_name>">{{ album.name }}</a></td>
+            <td> {{ album.name }} </td>
 
         </tr>
         {% endfor %}

@@ -3,14 +3,15 @@ body {
     font-weight: 900;
     margin: 0;
     padding: 0;
-    background-image: url('../notes.jpg');
+    background-image: url('./notes.jpg');
+    background-size: 100px 200px;
     background-size: cover;
     background-position: center;
     color: #fdfcfc;
 }
 
 h1 {
-    color: #fdfcfc;
+    color: #f0ecec;
     text-align: center;
     text-decoration: underline;
 }
@@ -20,18 +21,18 @@ a {
     text-align: center;
     margin: 10px;
     text-decoration: none;
-    color: rgb(229, 235, 238);
+    color: rgb(246, 246, 247);
     font-size: 25px;
 }
 
 a:hover {
-    color: rgb(214, 8, 98);
+    color: rgb(246, 240, 243);
 }
 
 .select-genre {
     font-size: 18px;
     font-weight: bold;
-    color: rgb(243, 243, 246);
+    color: rgb(237, 237, 242);
     text-decoration: underline;
     text-align: left;
     margin-bottom: 10px;
@@ -48,14 +49,14 @@ a:hover {
     font-weight: 900;
     padding: 12px 12px;
     width: 250px;
-    margin: 10px;
+    margin: auto;
     float: center;
-    border: 10px;
+    border: 5px solid #ffffff;
     border-radius: 50px;
     cursor: pointer;
     background-position: center;
     transition: all 0.5s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
     display: block;
 }
 

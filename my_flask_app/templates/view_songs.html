@@ -39,9 +39,9 @@
             {% endfor %}
         </select>
         <label for="playlist">Choose a Playlist:</label>
-        <select name="playlist" id="playlist">
-            {% for playlist in playlists %}
-            <option value="{{playlist.name }}">{{ playlist.name }}</option>
+        <select name="playlist" id="playlist" required>
+            {% for playlist_name in playlists %}
+            <option value="{{playlist_name}}">{{ playlist_name }}</option>
             {% endfor %}
         </select>
         <div>

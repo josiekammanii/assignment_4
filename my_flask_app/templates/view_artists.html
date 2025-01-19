@@ -14,7 +14,10 @@
         </tr>
         {% for artist in songs %}
         <tr>
-            <td><a href="/view_artists/<artist_name>">{{ artist.name }}</a></td>
+            <td><a href="/view_artists/{{ artist.name | replace(' ','_') }}" target="_blank"> 
+                {{ artist.name }}
+            </a>
+        </td>
         </tr>
         {% endfor %}
     </table>
